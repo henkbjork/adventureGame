@@ -22,6 +22,10 @@ public class Main {
         r4.addItem("hanger");
         r4.addItem("pants");
 
+        r2.addTrap(new Trap("mouse trap", 10));
+        r3.addTrap(new Trap("bomb", 100));
+        r4.addTrap(new Trap("spike", 10));
+
 
         Room[][] map = {
                 {r2, r3},
@@ -33,17 +37,24 @@ public class Main {
         System.out.println("\n");
         printMenu();
 
-        while (true) {
+        while(true) {
             Room room = map[p1.getPosY()][p1.getPosX()];
+            System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
+            System.out.println(room);
+            int life = p1.getLife();
+            if(room.hasTrap() != null) {
+                life = p1.getLife() - room.hasTrap().getDamage();
+                if(life <= 0) {
+                    System.out.println("\n\nYou are dead. \n\n\t\t GAME OVER");
+                    return;
+                }
+            }
+            System.out.println("Your life level is: " + life);
+            System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
             System.out.println("\nWhat do you want to do? (enter 6 for available options)");
             String choice = scanner.next();
 
             switch (choice) {
-                case "0":
-                    System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
-                    System.out.println(room);
-                    System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
-                    break;
                 case "1":
                     String direction = "";
                     while (!room.possibleExit(direction)) {
@@ -94,7 +105,6 @@ public class Main {
     }
     private static void printMenu() {
         System.out.println("Possible options \n" +
-                "- Enter 0 to see were you are. \n" +
                 "- Enter 1 if you want to go to another room. \n" +
                 "- Enter 2 if you want to pick up an item. \n" +
                 "- Enter 3 if you want to drop an item. \n" +

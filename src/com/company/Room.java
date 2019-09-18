@@ -8,15 +8,21 @@ public class Room {
     private String description;
     private String[] exits;
     private List<Item> items;
+    private List<Trap> traps;
 
     public Room(String description, String[] exits) {
         this.description = description;
         this.exits = exits;
         this.items = new ArrayList<>();
+        this.traps = new ArrayList<>();
     }
 
     public void addItem(String item) {
         items.add(new Item(item));
+    }
+
+    public void addTrap(Trap trap) {
+        traps.add(trap);
     }
 
     public boolean deleteItem(String item) {
@@ -41,6 +47,26 @@ public class Room {
         return "This room has the following items: \n" + sb.subSequence(0, sb.length()-2);
     }
 
+    public String printRoomTraps() {
+        if(traps.size() == 0) {
+            return "This room has no traps";
+        }
+        StringBuilder sb = new StringBuilder();
+        for(Trap trap : traps) {
+            sb.append(trap.getName()).append(", damage: ").append(trap.getDamage());
+            sb.append(", ");
+
+        }
+        return "This room has the following traps: \n" + sb.subSequence(0, sb.length()-2);
+    }
+
+    public Trap hasTrap() {
+        for(Trap trap : traps) {
+            return trap;
+        }
+        return null;
+    }
+
     public List<Item> getItems() {
         return items;
     }
@@ -59,6 +85,6 @@ public class Room {
 
     @Override
     public String toString() {
-        return description + ": " + Arrays.toString(exits) + "\n" + printRoomItems();
+        return description + ": " + Arrays.toString(exits) + "\n" + printRoomItems() + "\n" + printRoomTraps();
     }
 }

@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Item {
     private String name;
-    private int weight;
 
     public Item(String name) {
         this.name = name;
