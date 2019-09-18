@@ -14,7 +14,7 @@ public class Main {
         Room r4 = new Room("You are in a closet, from here you can go ", new String[]{"N", "W"});
 
         r1.addItem("whip");
-        r1.addItem("stick");
+        r1.addItem("med-kit");
         r2.addItem("chair");
         r2.addItem("sword");
         r3.addItem("bathtub");
@@ -23,7 +23,7 @@ public class Main {
         r4.addItem("pants");
 
         r2.addTrap(new Trap("mouse trap", 10));
-        r3.addTrap(new Trap("bomb", 100));
+        r3.addTrap(new Trap("bomb", 30));
         r4.addTrap(new Trap("spike", 10));
 
 

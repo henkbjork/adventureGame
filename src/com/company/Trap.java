@@ -9,7 +9,7 @@ public class Trap {
         this.damage = damage;
     }
 
-    public int hurtPlayer() {
+    public int hurtPlayer(int lifeLevel) {
       if((damage) <= 0) {
           return 0;
       }

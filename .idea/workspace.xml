@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f94181d-0682-4bae-955e-dd5a5af54fe5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Item.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/World.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Trap.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,8 +71,16 @@
       <workItem from="1568621026814" duration="42170000" />
       <workItem from="1568799613916" duration="24000" />
       <workItem from="1568803794117" duration="216000" />
-      <workItem from="1568804833209" duration="3511000" />
+      <workItem from="1568804833209" duration="5036000" />
     </task>
+    <task id="LOCAL-00001" summary="adding traps">
+      <created>1568811083290</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1568811083290</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,5 +98,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adding traps" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding traps" />
   </component>
 </project>
