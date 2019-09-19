@@ -4,7 +4,11 @@
     <list default="true" id="3f94181d-0682-4bae-955e-dd5a5af54fe5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AdventureGame/com/company/Room.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Trap.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,6 +76,7 @@
       <workItem from="1568799613916" duration="24000" />
       <workItem from="1568803794117" duration="216000" />
       <workItem from="1568804833209" duration="5036000" />
+      <workItem from="1568825547720" duration="10799000" />
     </task>
     <task id="LOCAL-00001" summary="adding traps">
       <created>1568811083290</created>

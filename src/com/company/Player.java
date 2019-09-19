@@ -18,6 +18,9 @@ public class Player {
 
     public void pickUpItem(String item) {
         inventory.add(new Item(item));
+        if(item.equalsIgnoreCase("med-kit")) {
+            life = 100;
+        }
         System.out.println("You just picked up " + item);
     }
 
@@ -34,7 +37,9 @@ public class Player {
 
     public void playerItem() {
         if(inventory.isEmpty()) {
+            System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
             System.out.println("You have no items");
+            System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
             return;
         }
         StringBuilder sb = new StringBuilder();
@@ -42,7 +47,9 @@ public class Player {
             sb.append(x);
             sb.append(", ");
         }
+        System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
         System.out.println("You currently have the following items: " + sb);
+        System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
     }
 
     public void move(String direction) {
@@ -57,12 +64,16 @@ public class Player {
         }
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
+    public int newLifeLevel(int trap) {
+        int newLevel = life - trap;
+        if(newLevel > 0) {
+            return newLevel;
+        }
+        return 0;
     }
 
-    public void setPosY(int posY) {
-        this.posY = posY;
+    public void setLife(int life) {
+        this.life = life;
     }
 
     public int getPosX() {

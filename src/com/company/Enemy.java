@@ -1,10 +1,10 @@
 package com.company;
 
-public class Trap {
+public class Enemy {
     private String name;
     private int damage;
 
-    public Trap(String name, int damage) {
+    public Enemy(String name, int damage) {
         this.name = name;
         this.damage = damage;
     }
@@ -19,7 +19,7 @@ public class Trap {
 
     @Override
     public String toString() {
-        return "Trap{" +
+        return "Enemy{" +
                 "name='" + name + '\'' +
                 ", damage=" + damage +
                 '}';

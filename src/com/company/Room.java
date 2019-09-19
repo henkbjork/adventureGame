@@ -9,12 +9,18 @@ public class Room {
     private String[] exits;
     private List<Item> items;
     private List<Trap> traps;
+    private List<Enemy> enemies;
 
     public Room(String description, String[] exits) {
         this.description = description;
         this.exits = exits;
         this.items = new ArrayList<>();
         this.traps = new ArrayList<>();
+        this.enemies = new ArrayList<>();
+    }
+
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
     }
 
     public void addItem(String item) {
@@ -47,6 +53,18 @@ public class Room {
         return "This room has the following items: \n" + sb.subSequence(0, sb.length()-2);
     }
 
+    public String printRoomEnemies() {
+        if(enemies.size() == 0) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for(Enemy enemy : enemies) {
+            sb.append(enemy.getName()).append(", damage: ").append(enemy.getDamage());
+            sb.append(", ");
+        }
+        return "You just waled in an enemy... " + sb.subSequence(0, sb.length()-2);
+    }
+
     public String printRoomTraps() {
         if(traps.size() == 0) {
             return "This room has no traps";
@@ -55,16 +73,21 @@ public class Room {
         for(Trap trap : traps) {
             sb.append(trap.getName()).append(", damage: ").append(trap.getDamage());
             sb.append(", ");
-
         }
-        return "This room has the following traps: \n" + sb.subSequence(0, sb.length()-2);
+        return "To bad, this room has a trap... You just stepped on a: " + sb.subSequence(0, sb.length()-2);
     }
 
-    public Trap hasTrap() {
+    public Trap getTrap() {
         for(Trap trap : traps) {
             return trap;
         }
         return null;
+    }
+
+    public void deleteTrap() {
+        if(getTrap() != null) {
+            traps.remove(getTrap());
+        }
     }
 
     public List<Item> getItems() {
@@ -85,6 +108,6 @@ public class Room {
 
     @Override
     public String toString() {
-        return description + ": " + Arrays.toString(exits) + "\n" + printRoomItems() + "\n" + printRoomTraps();
+        return "> " + description + ": " + Arrays.toString(exits) + "\n" + "> " + printRoomItems() + "\n" + "> " + printRoomTraps();
     }
 }
