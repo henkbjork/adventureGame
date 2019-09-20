@@ -1,16 +1,17 @@
 package com.company;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         Room r1 = new Room("You are in a basement, from here you can go ", new String[]{"N", "E"});
-        Room r2 = new Room("Your are in the boiler room, from here you can go", new String[]{"S", "E", "W"});
-        Room r3 = new Room("Your are in a bathroom, from here you can go ", new String[]{"S", "W"});
+        Room r2 = new Room("Your are in the boiler room, from here you can go", new String[]{"S", "E"});
+        Room r3 = new Room("Your are in a bathroom, from here you can go ", new String[]{"S", "W", "E"});
         Room r4 = new Room("You are in a laundry room, from here you can go ", new String[]{"W", "N", "E"});
         Room r5 = new Room("You are in a hallway, from here you can go, ", new String[]{"S", "W"});
         Room r6 = new Room("You are in a closet, from here you can go ", new String[]{"N", "W"});
@@ -25,8 +26,6 @@ public class Main {
         r4.addItem("pants");
         r5.addItem("jacket");
         r5.addItem("shoes");
-        r6.addItem("bleach");
-        r6.addItem("bucket");
 
         r2.addTrap(new Trap("mouse trap", 10));
         r3.addTrap(new Trap("bomb", 60));
@@ -41,12 +40,26 @@ public class Main {
         };
 
         Player p1 = new Player();
-
+        boolean quit = false;
         startTheme();
 
 
-        while(true) {
+        while(!quit) {
             Room room = map[p1.getPosY()][p1.getPosX()];
+            if(room.getDescription().contains("closet")) {
+                if(p1.playerItem()) {
+                    String fight = fightMonster();
+                    if(fight.equals("dead")) {
+                        deadEndTheme();
+                        return;
+                    } else if(fight.equals("alive")) {
+                        aliveEndTheme();
+                        return;
+                    }
+                } else {
+                    findMonsterNoWeapon();
+                }
+            }
             System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
             System.out.println(room);
             int life = p1.getLife();
@@ -62,7 +75,7 @@ public class Main {
             System.out.println("> Your life level is: " + life);
             System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
             System.out.println("\nWhat do you want to do? (enter 6 for available options)");
-            String choice = scanner.next();
+            String choice = scanner.next().toLowerCase();
 
             switch (choice) {
                 case "1":
@@ -100,13 +113,73 @@ public class Main {
                 case "6":
                     printMenu();
                     break;
-                case "9":
-                    System.out.println("Game is shutting down, see you next time!");
-                    return;
+                case "quit":
+                    System.out.println("\n\n\t\tGame is shutting down, see you next time!");
+                    quit = true;
+                    break;
                 default:
                     System.out.println("Your choice is not available.");
                     break;
             }
+        }
+    }
+
+    private static void findMonsterNoWeapon() {
+        for(int i=0; i<20; i++) {
+            System.out.println("\n");
+        }
+
+        System.out.println("> You have found the monster in the closet, \n");
+        System.out.println("> You will need a weapon, you cant kill the monster with your bare hands\n");
+        System.out.println("> Go, find a weapon and come back!");
+
+        for(int i=0; i<10; i++) {
+            System.out.println("\n");
+        }
+
+        pauseTime();
+
+    }
+
+    private static String fightMonster() {
+        for(int i=0; i<20; i++) {
+            System.out.println("\n");
+        }
+        System.out.println("> You have found the monster in the closet, \n" +
+                            " lets see if you have what it takes to kill him!");
+        promptEnterKey();
+        System.out.println("> Grab a weapon, (any item will do), and take a swing");
+        System.out.println("> You need to be fast, hit the \"ENTER\" key to swing at the monster.");
+
+        long startTime = System.nanoTime();
+        for(int i=0; i<20; i++) {
+            hitMonster();
+        }
+        long endTime = System.nanoTime();
+        long timeElapsed = endTime - startTime;
+        System.out.println("Timeelapsed:" + timeElapsed);
+
+        if(timeElapsed > 3000000000L) {
+            return "dead";
+        } else {
+            return "alive";
+        }
+    }
+
+    private static void hitMonster() {
+        try {
+            int read = System.in.read(new byte[2]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void promptEnterKey(){
+        System.out.println("> Press \"ENTER\" to continue...");
+        try {
+            int read = System.in.read(new byte[2]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -118,10 +191,10 @@ public class Main {
                 "- Enter 4 to see players item. \n" +
                 "- Enter 5 to see current room items. \n" +
                 "- enter 6 to print available options. \n" +
-                "- Enter 9 if you wish to quit the game.\n");
+                "- Enter quit if you wish to quit the game.\n");
     }
 
-    public static void pauseTime() {
+    private static void pauseTime() {
         try {
             Thread.sleep(1000);
         } catch(Exception e) {
@@ -129,16 +202,35 @@ public class Main {
         }
     }
 
-    public static void startTheme() {
-        System.out.println("\n\t Welcome the ADVENTURE OF YOUR LIFE...");
+    private static void startTheme() {
+        System.out.println("\n\t Welcome...");
         pauseTime();
-        System.out.println("\n\t\t\t\t\t to the ADVENTURE");
+        System.out.println("\n\t\t\t\t\t to the ADVENTURE...");
         pauseTime();
         System.out.println("\n\t\t OF YOUR LIFE...");
         pauseTime();
-        System.out.println("\n\n\t\t Game objectives: \n\tKill the monster in the closet!\n\n");
+        System.out.println("\n\n\t\t Game objectives: \nFind the closet and kill the monster to save the day.\n\n");
         System.out.println("\n");
         pauseTime();
+    }
+
+    private static void aliveEndTheme() {
+        pauseTime();
+        System.out.println("**************************************************");
+        System.out.println("> You have killed the monster and saved the day.");
+        System.out.println("**************************************************");
+        System.out.println("\t\tCONGRATULATIONS!!!!");
+        System.out.println("**************************************************");
+    }
+
+    private static void deadEndTheme() {
+        pauseTime();
+        System.out.println("*********************************************");
+        System.out.println("> You are to slow and stiff \n");
+        System.out.println("> You have been killed by the monster.");
+        System.out.println("*********************************************");
+        System.out.println("\t\t\tGAME OVER!!!!");
+        System.out.println("*********************************************");
     }
 }
 

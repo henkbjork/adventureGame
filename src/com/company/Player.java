@@ -35,12 +35,12 @@ public class Player {
         return false;
     }
 
-    public void playerItem() {
+    public boolean playerItem() {
         if(inventory.isEmpty()) {
             System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
             System.out.println("You have no items");
             System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
-            return;
+            return false;
         }
         StringBuilder sb = new StringBuilder();
         for(Item x : inventory) {
@@ -50,6 +50,7 @@ public class Player {
         System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
         System.out.println("You currently have the following items: " + sb);
         System.out.println("**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**\t\t**");
+        return true;
     }
 
     public void move(String direction) {
